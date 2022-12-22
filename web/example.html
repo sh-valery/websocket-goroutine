@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <title>Web Socket Demo</title>
+</head>
+<body>
+<h1>Web Socket Demo</h1>
+<p id="about">The script read messages from the ws://localhost:8080/ws and show the last message...</p>
+<p id="message">Loading...</p>
+<script>
+    const socket = new WebSocket('ws://localhost:8080/ws');
+
+    socket.onmessage = (event) => {
+        document.getElementById('message').innerText = "last message from socket: " + event.data;
+    };
+</script>
+</body>
+</html>
