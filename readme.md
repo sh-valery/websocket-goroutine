@@ -10,7 +10,7 @@ Clone the repository and navigate to the root directory:
 
 ```bash
 git clone https://github.com/sh-valery/websocket-goroutine.git
-cd websocket-server
+cd websocket-goroutine
 
 ```
 
@@ -26,11 +26,12 @@ The server will start listening on port 8080.
 
 ## Connecting to the server
 
-To connect to the server, you can use the webpage provided in the `web` directory.
+To connect to the web socket, you can use the webpage provided in the `web` directory.
+The webpage has a script to connect to the web socket server and after this the page shows the message received from the server.
 
-1. Open example file served by the web server in your browser: http://localhost:8080/
-or Open the HTML file directly in the `web` directory in any browser.
-There is a webpage that connects to the web socket server and displays the message received from the server.
+http://localhost:8080/ follow the link to open the file served by the web server in your browser.
+Or Open the HTML file directly in the `web` directory in any browser. file:///path/to/websocket-goroutine/web/example.html
+
 
 ## Testing the server
 
@@ -56,7 +57,7 @@ docker run -d -p 8080:8080 --name websocket-demo  websocket-server
 ```
 
 OR 
-Run the Docker container in foreground and remove it after it stops:
+Run the Docker container in foreground and remove it after stopping:
 ```bash
 docker run -i --rm -p 8080:8080 --name websocket-demo  websocket-server
 
