@@ -18,8 +18,7 @@ cd websocket-server
 Build and run the server:
 
 ```bash
-go build
-./websocket-server
+go build ./cmd/server
 ```
 
 
@@ -52,7 +51,7 @@ docker build -t websocket-server .
 Run the Docker container:
 
 ```bash
-docker run -p 8080:8080 websocket-server
+docker run -p 8080:8080 --name websocket-demo  websocket-server
 ```
 
 
