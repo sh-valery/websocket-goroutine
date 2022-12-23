@@ -4,6 +4,7 @@ import (
 	"fmt"
 	"github.com/google/uuid"
 	"github.com/gorilla/websocket"
+	"log"
 	"net/http"
 	"time"
 )
@@ -33,7 +34,10 @@ var upgrader = websocket.Upgrader{
 
 func main() {
 	http.HandleFunc("/ws", handleWebSocket)
-	http.ListenAndServe(":8080", nil)
+	err := http.ListenAndServe(":8080", nil)
+	if err != nil {
+		log.Fatal(err)
+	}
 }
 
 func handleWebSocket(w http.ResponseWriter, r *http.Request) {
