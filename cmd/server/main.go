@@ -34,6 +34,9 @@ var upgrader = websocket.Upgrader{
 
 func main() {
 	http.HandleFunc("/ws", handleWebSocket)
+	http.HandleFunc("/", func(w http.ResponseWriter, r *http.Request) {
+		http.ServeFile(w, r, "web/example.html")
+	})
 	err := http.ListenAndServe(":8080", nil)
 	if err != nil {
 		log.Fatal(err)

@@ -9,7 +9,7 @@ To run the server, you will need to have [Go](https://golang.org/) installed on 
 Clone the repository and navigate to the root directory:
 
 ```bash
-git clone https://github.com/<your-username>/websocket-server.git
+git clone https://github.com/sh-valery/websocket-goroutine.git
 cd websocket-server
 
 ```
@@ -18,7 +18,7 @@ cd websocket-server
 Build and run the server:
 
 ```bash
-go build ./cmd/server
+go run ./cmd/server
 ```
 
 
@@ -28,7 +28,9 @@ The server will start listening on port 8080.
 
 To connect to the server, you can use the webpage provided in the `web` directory.
 
-1. Open the HTML file in the `web` directory in your browser. This will open a webpage that connects to the web socket server and displays the message received from the server.
+1. Open example file served by the web server in your browser: http://localhost:8080/
+or Open the HTML file directly in the `web` directory in any browser.
+There is a webpage that connects to the web socket server and displays the message received from the server.
 
 ## Testing the server
 
@@ -48,11 +50,16 @@ Build the Docker image:
 docker build -t websocket-server .
 ```
 
-Run the Docker container:
-
+Run the Docker container in background:
 ```bash
-docker run -p 8080:8080 --name websocket-demo  websocket-server
+docker run -d -p 8080:8080 --name websocket-demo  websocket-server
 ```
 
+OR 
+Run the Docker container in foreground and remove it after it stops:
+```bash
+docker run -i --rm -p 8080:8080 --name websocket-demo  websocket-server
 
-The server will start listening on port 8080 in the Docker container. To access the server from the host machine, open the HTML file in the `web` directory in your browser.
+```
+
+open page to see the result http://localhost:8080/
