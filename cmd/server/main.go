@@ -57,7 +57,10 @@ func handleWebSocket(w http.ResponseWriter, r *http.Request) {
 			fmt.Println(err)
 			return
 		}
-		conn.WriteMessage(websocket.TextMessage, []byte(message))
+		err = conn.WriteMessage(websocket.TextMessage, []byte(message))
+		if err != nil {
+			fmt.Println(err)
+		}
 		time.Sleep(3 * time.Second)
 	}
 }
