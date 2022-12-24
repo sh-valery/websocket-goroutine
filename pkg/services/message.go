@@ -12,16 +12,16 @@ func NewMessageService() *messageService {
 	return &messageService{}
 }
 
-func (s *messageService) GetMessageChannel() (chan string, error) {
+func (s *messageService) GetMessageChannel() (chan string, chan bool) {
 	messageChannel := make(chan string)
 	done := make(chan bool)
 
 	// run fakeMessageGenerator in a goroutine, change to data that you want to send
-	go s.fakeMessageGenerator(messageChannel, done)
-	return messageChannel, nil
+	go fakeMessageGenerator(messageChannel, done)
+	return messageChannel, done
 }
 
-func (s *messageService) fakeMessageGenerator(messageChan chan string, done chan bool) {
+func fakeMessageGenerator(messageChan chan string, done chan bool) {
 	fmt.Println("goroutine started")
 	messageChan <- fmt.Sprintf("Connection established at %s, waiting for a message", time.Now().String())
 
