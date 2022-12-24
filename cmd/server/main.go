@@ -6,11 +6,10 @@ import (
 	"github.com/sh-valery/websocket-goroutine/pkg/services"
 	"log"
 	"net/http"
-	"time"
 )
 
 type MessageService interface {
-	GenerateMessage() (string, error)
+	GetMessageChannel() (chan string, error)
 }
 
 var MessagePublisher MessageService
@@ -48,17 +47,16 @@ func handleWebSocket(w http.ResponseWriter, r *http.Request) {
 	}
 
 	// send messages to the websocket
-	for {
-		message, err := MessagePublisher.GenerateMessage()
+	messageChan, err := MessagePublisher.GetMessageChannel()
+	if err != nil {
+		fmt.Println(err)
+		return
+	}
+
+	for m := range messageChan {
+		err = conn.WriteMessage(websocket.TextMessage, []byte(m))
 		if err != nil {
 			fmt.Println(err)
-			return
 		}
-		err = conn.WriteMessage(websocket.TextMessage, []byte(message))
-		if err != nil {
-			fmt.Println(err)
-		}
-		MessageDelay := 3 * time.Second
-		time.Sleep(MessageDelay)
 	}
 }

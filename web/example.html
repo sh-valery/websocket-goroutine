@@ -11,7 +11,7 @@
     const socket = new WebSocket('ws://localhost:8080/ws');
 
     socket.onmessage = (event) => {
-        document.getElementById('message').innerText = "last message from socket: " + event.data;
+        document.getElementById('message').innerText = "last message from the socket: \n" + event.data;
     };
 </script>
 </body>

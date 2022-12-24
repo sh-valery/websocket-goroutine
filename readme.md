@@ -1,6 +1,6 @@
 # Web Socket Interaction
 
-This is a simple web socket server that pushes the current time and a randomly generated UUID to the web socket every 3 seconds. And a web page with a client that shows the last received message.
+This is a simple web socket server that pushes the current time and a randomly generated UUID to the web socket every 5 seconds. And a web page with a client that shows the last received message.
 
 ## Running the server
 
