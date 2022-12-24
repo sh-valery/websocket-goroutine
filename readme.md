@@ -1,6 +1,19 @@
 # Web Socket Interaction
 
-This is a simple web socket server that pushes the current time and a randomly generated UUID to the web socket every 5 seconds. And a web page with a client that shows the last received message.
+This is a simple web socket server that pushes the current time and a randomly generated UUID to the web socket every 5 seconds. And there is a web page with a client that shows the last received message.
+
+## Notes
+### Testing
+The service has dependency injection to make the code testable. It follows repository pattern and the handler layer incapsulates the service layer. 
+During tests the service layer is mocked and the handler layer is tested.
+Also, you can change your service layer to another one and use the project as a base.
+
+### Interaction
+Service layer run a fake goroutine that pushes messages every N second to the channel. The handler layer reads from the channel at the same time handler reads from the channel and pushes messages to to the web socket.
+
+```
+service(generate message) --(chan)--> handler(read message) --(tcp)--> web socket
+```
 
 ## Running the server
 
@@ -35,10 +48,10 @@ Or Open the HTML file directly in the `web` directory in any browser. file:///pa
 
 ## Testing the server
 
-To run the tests for the server, navigate to the root directory and run:
+To run the tests, navigate to the root directory and run:
 
 ```bash
-go test
+go test ./...
 ```
 
 ## Building and running the server in a Docker container
